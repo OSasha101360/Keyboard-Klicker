@@ -15,15 +15,19 @@ class MenuScreen(Screen):
         layout = BoxLayout(orientation='vertical', padding=50, spacing=20)
 
         # Надпись с названием игры
-        title_label = Label(text='MY CLICKER', font_size='32sp')
+        title_label = Label(text='KD CLICKER', font_size='32sp')
 
         # Кнопка Play
         play_button = Button(text='Play', font_size='24sp')
         play_button.bind(on_press=self.go_to_game)
+        
+        # Кнопка Settings
+        settings_button = Button(text='Settings', font_size='24sp')
 
         # Добавляем виджеты в layout, а layout на экран
         layout.add_widget(title_label)
         layout.add_widget(play_button)
+        layout.add_widget(settings_button)
         self.add_widget(layout)
 
     def go_to_game(self, instance):
