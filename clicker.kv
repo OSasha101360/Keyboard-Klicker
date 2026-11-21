@@ -1,0 +1,82 @@
+<MenuScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [40, 50, 40, 50]
+        spacing: 24
+
+        Label:
+            text: 'KD CLICKER'
+            font_size: '34sp'
+            bold: True
+            size_hint: (1, 0.15)
+            pos_hint: {'center_x': 0.5}
+
+        Image:
+            source: 'cover.png'
+            size_hint: (0.85, 0.45)
+            pos_hint: {'center_x': 0.5}
+            allow_stretch: True
+            keep_ratio: True
+
+        Button:
+            text: 'Play'
+            font_size: '26sp'
+            bold: True
+            size_hint: (0.7, 0.15)
+            pos_hint: {'center_x': 0.5}
+            background_normal: ''
+            background_color: (0.18, 0.72, 0.38, 1)
+            color: (1, 1, 1, 1)
+            on_press: root.go_to_game()
+
+        Button:
+            text: 'Settings'
+            font_size: '22sp'
+            size_hint: (0.6, 0.12)
+            pos_hint: {'center_x': 0.5}
+            background_normal: ''
+            background_color: (0.28, 0.32, 0.40, 1)
+            color: (0.95, 0.95, 0.95, 1)
+
+
+<GameScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [30, 40, 30, 40]
+        spacing: 20
+
+        Label:
+            id: game_label
+            text: 'Clicks: 0'
+            font_size: '30sp'
+            bold: True
+            size_hint: (1, 0.15)
+            pos_hint: {'center_x': 0.5}
+
+        RelativeLayout:
+            size_hint: (0.8, 0.6)
+            pos_hint: {'center_x': 0.5}
+
+            Button:
+                size_hint: (0.75, 0.75)
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                background_normal: ''
+                background_color: (0, 0, 0, 0)
+                on_press: root.on_click_target()
+
+                Image:
+                    source: 'target.png'
+                    size_hint: (1, 1)
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    allow_stretch: True
+                    keep_ratio: True
+
+        Button:
+            text: 'Back'
+            font_size: '22sp'
+            size_hint: (0.5, 0.12)
+            pos_hint: {'center_x': 0.5}
+            background_normal: ''
+            background_color: (0.82, 0.28, 0.28, 1)
+            color: (1, 1, 1, 1)
+            on_press: root.go_to_menu()
