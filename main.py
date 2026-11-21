@@ -1,13 +1,30 @@
+from kivy.config import Config
+
+# Устанавливаем компактный портретный размер окна до импорта Window
+Config.set('graphics', 'width', '360')
+Config.set('graphics', 'height', '640')
+Config.set('graphics', 'resizable', '1')
+
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import NumericProperty
-from kivy.uix.screenmanager import Screen, ScreenManager, SlideTransition
+from kivy.uix.screenmanager import Screen, ScreenManager
 
 
 class MenuScreen(Screen):
     def go_to_game(self):
-        self.manager.transition = SlideTransition(direction='left', duration=0.35)
+        self.manager.transition.direction = 'left'
         self.manager.current = 'game'
+
+    def go_to_settings(self):
+        self.manager.transition.direction = 'left'
+        self.manager.current = 'settings'
+
+
+class SettingsScreen(Screen):
+    def go_to_menu(self):
+        self.manager.transition.direction = 'right'
+        self.manager.current = 'menu'
 
 
 class GameScreen(Screen):
@@ -16,8 +33,11 @@ class GameScreen(Screen):
     def register_click(self):
         self.clicks += 1
 
+    def reset_clicks(self):
+        self.clicks = 0
+
     def go_to_menu(self):
-        self.manager.transition = SlideTransition(direction='right', duration=0.35)
+        self.manager.transition.direction = 'right'
         self.manager.current = 'menu'
 
 
@@ -27,6 +47,7 @@ class ClickerApp(App):
         sm = ScreenManager()
         sm.add_widget(MenuScreen(name='menu'))
         sm.add_widget(GameScreen(name='game'))
+        sm.add_widget(SettingsScreen(name='settings'))
         return sm
 
 
