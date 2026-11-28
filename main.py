@@ -35,12 +35,18 @@ class SettingsScreen(Screen):
 
 class GameScreen(Screen):
     clicks = NumericProperty(0)
+    score = NumericProperty(0)
+    click_power = NumericProperty(1)
 
     def register_click(self):
         self.clicks += 1
+        self.score += self.click_power
+        self.click_power = 1 + (self.clicks // 10)
 
     def reset_clicks(self):
         self.clicks = 0
+        self.score = 0
+        self.click_power = 1
 
     def go_to_menu(self):
         self.manager.transition.direction = 'right'

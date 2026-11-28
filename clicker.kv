@@ -86,12 +86,12 @@
         padding: [16, 20, 16, 20]
         spacing: 14
 
-        # 1. HUD — верхняя панель со счётчиком кликов
+        # 1. HUD — верхняя панель со счётом и силой клика
         BoxLayout:
             id: hud_panel
             orientation: 'vertical'
             size_hint_y: None
-            height: '92dp'
+            height: '116dp'
             padding: [12, 8]
             spacing: 2
             canvas.before:
@@ -103,21 +103,30 @@
                     radius: [14]
 
             Label:
-                text: 'CLICKS'
+                text: 'SCORE'
                 font_size: '14sp'
                 bold: True
                 color: COLOR_ACCENT
                 size_hint_y: None
-                height: '22dp'
+                height: '20dp'
 
             Label:
                 id: clicks_label
-                text: f'{root.clicks}'
+                text: f'{root.score}'
                 font_size: '28sp'
                 bold: True
                 color: COLOR_TEXT
                 size_hint_y: None
-                height: '44dp'
+                height: '40dp'
+
+            Label:
+                id: power_label
+                text: f'Click Power: +{root.click_power} (Clicks: {root.clicks})'
+                font_size: '15sp'
+                bold: True
+                color: COLOR_ACCENT
+                size_hint_y: None
+                height: '24dp'
 
         # 2. Game Area — центральная игровая область
         RelativeLayout:
