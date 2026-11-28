@@ -22,9 +22,15 @@ class MenuScreen(Screen):
 
 
 class SettingsScreen(Screen):
+    volume = NumericProperty(50)
+
     def go_to_menu(self):
         self.manager.transition.direction = 'right'
         self.manager.current = 'menu'
+
+    def go_to_game(self):
+        self.manager.transition.direction = 'right'
+        self.manager.current = 'game'
 
 
 class GameScreen(Screen):
@@ -39,6 +45,10 @@ class GameScreen(Screen):
     def go_to_menu(self):
         self.manager.transition.direction = 'right'
         self.manager.current = 'menu'
+
+    def go_to_settings(self):
+        self.manager.transition.direction = 'left'
+        self.manager.current = 'settings'
 
 
 class ClickerApp(App):

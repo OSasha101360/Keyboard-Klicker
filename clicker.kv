@@ -71,7 +71,8 @@
                 background_color: COLOR_SURFACE
                 color: COLOR_TEXT
                 on_press: root.go_to_settings()
-                
+
+
 <GameScreen>:
     canvas.before:
         Color:
@@ -170,6 +171,15 @@
                 color: COLOR_PRIMARY
                 on_press: root.go_to_menu()
 
+            Button:
+                text: 'Settings'
+                font_size: '18sp'
+                bold: True
+                background_normal: ''
+                background_color: COLOR_SURFACE
+                color: COLOR_TEXT
+                on_press: root.go_to_settings()
+
 
 <SettingsScreen>:
     canvas.before:
@@ -206,11 +216,30 @@
                     radius: [16]
 
             Label:
-                text: 'Sound & Vibrations'
+                text: 'Volume'
                 font_size: '18sp'
                 color: COLOR_TEXT
                 size_hint_y: None
-                height: '32dp'
+                height: '30dp'
+
+            Label:
+                id: volume_value_label
+                text: f'{int(volume_slider.value)}%'
+                font_size: '22sp'
+                bold: True
+                color: COLOR_ACCENT
+                size_hint_y: None
+                height: '34dp'
+
+            Slider:
+                id: volume_slider
+                min: 0
+                max: 100
+                step: 1
+                value: root.volume
+                size_hint_y: None
+                height: '40dp'
+                on_value: root.volume = self.value
 
             Button:
                 text: 'Reset Clicks'
@@ -222,6 +251,17 @@
                 background_color: COLOR_ACCENT
                 color: COLOR_PRIMARY
                 on_press: app.root.get_screen('game').reset_clicks()
+
+        Button:
+            text: 'Back to Game'
+            font_size: '18sp'
+            bold: True
+            size_hint_y: None
+            height: '48dp'
+            background_normal: ''
+            background_color: COLOR_ACCENT
+            color: COLOR_PRIMARY
+            on_press: root.go_to_game()
 
         Button:
             text: 'Back to Menu'
